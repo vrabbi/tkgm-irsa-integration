@@ -1,0 +1,22 @@
+aws_profile     = "default"
+aws_region      = "eu-west-2"
+cluster_name    = "irsa-demo-cls-01"
+cluster_created = false
+iam_role_configs = [
+  {
+    ns_sa_string       = "default:sample-irsa-user"
+    managed_policy_arn = "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+    name               = "irsa-demo-cls-01-s3-read-only-role"
+  },
+
+  {
+    ns_sa_string       = "velero:default"
+    managed_policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+    name               = "irsa-demo-cls-01-s3-full-access-role"
+  }
+]
+
+kubeconfig_path = "~/.kube/config"
+
+mgmt_cluster_kube_context = "demo-tkg-mgmt-admin@demo-tkg-mgmt"
+
