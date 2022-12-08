@@ -12,6 +12,7 @@ The module requires the following pre-requisites:
 2. Tanzu CLI is installed
 3. Tanzu CLI is logged in to the management cluster
 
+For more information check out the related [blog post](https://vrabbi.cloud/post/making-tkgm-feel-like-eks/)
 # Terraform Module Documentation
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
