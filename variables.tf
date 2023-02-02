@@ -1,13 +1,17 @@
 variable "aws_region" {
+  type        = string
   description = "The AWS Region to deploy resources in"
   default     = "eu-west-2"
 }
 
 variable "aws_profile" {
+  type        = string
   description = "The AWS profile to use for authentication to AWS"
+  default     = "default"
 }
 
 variable "cluster_name" {
+  type        = string
   description = "The name of the TKG cluster you want to create"
 }
 
@@ -26,11 +30,13 @@ variable "iam_role_configs" {
 }
 
 variable "kubeconfig_path" {
+  type        = string
   description = "The file path to your local kubeconfig where you have contexts for your management cluster and workload clusters"
   default     = "~/.kube/config"
 }
 
 variable "mgmt_cluster_kube_context" {
+  type        = string
   description = "The kubectl context of your TKG management cluster"
 }
 
@@ -98,32 +104,26 @@ variable "cloneMode" {
 }
 variable "datacenter" {
   type        = string
-  default     = "/Demo-Datacenter"
   description = "vSphere Datacenter (full path) for VM placement"
 }
 variable "datastore" {
   type        = string
-  default     = "/Demo-Datacenter/datastore/NFS_NLSAS_5"
   description = "vSphere Datastore (full path) for VM Placement"
 }
 variable "folder" {
   type        = string
-  default     = "/Demo-Datacenter/vm/LABS/Scott"
   description = "vSphere Folder (full path) for VM placement"
 }
 variable "network" {
   type        = string
-  default     = "/Demo-Datacenter/network/tkg-static-ips"
   description = "vSphere Port Group (full path) for node network"
 }
 variable "resourcePool" {
   type        = string
-  default     = "/Demo-Datacenter/host/Demo-Cluster/Resources"
   description = "vSphere Resource Pool (full path) for machine placement"
 }
 variable "server" {
   type        = string
-  default     = "demo-vc-01.terasky.demo"
   description = "vCenter FQDN or IP"
 }
 variable "storagePolicyID" {
@@ -133,7 +133,6 @@ variable "storagePolicyID" {
 }
 variable "template" {
   type        = string
-  default     = "/Demo-Datacenter/vm/Templates/TKG-M/Photon/photon-3-kube-v1.24.9+vmware.1"
   description = "vSphere Template (full path) to use for the clusters nodes"
 }
 variable "tlsThumbprint" {
@@ -186,11 +185,9 @@ variable "workerNumCPUs" {
 }
 variable "nameserver" {
   type        = string
-  default     = "10.100.100.100"
   description = "Nameserver to configure on K8s nodes"
 }
 variable "searchDomain" {
   type        = string
-  default     = "terasky.demo"
   description = "DNS Search domain for K8s Nodes"
 }
