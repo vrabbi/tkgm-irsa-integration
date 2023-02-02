@@ -1,0 +1,143 @@
+### AWS SETTINGS
+
+# The AWS profile to use for authentication to AWS
+aws_profile = ""
+
+# The AWS Region to deploy resources in
+aws_region = "eu-west-2"
+
+# IAM Role configuration for IRSA Service Accounts
+iam_role_configs = [
+  {
+    "managed_policy_arn": "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
+    "name": "demo-tkg-01-sample-role",
+    "ns_sa_string": "default:sample-s3-ro-user"
+  }
+]
+
+
+
+### VSPHERE SETTINGS
+
+# vCenter FQDN or IP
+server = "demo-vc.vrabbi.cloud"
+
+# vCenter TLS Thumbprint
+tlsThumbprint = ""
+
+# vSphere Password for CPI and CSI
+vsphere_password = ""
+
+# vSphere User for CSI and CPI
+vsphere_username = ""
+
+# vSphere Datacenter (full path) for VM placement
+datacenter = "/Demo-Datacenter"
+
+# vSphere Resource Pool (full path) for machine placement
+resourcePool = "/Demo-Datacenter/host/Demo-Cluster/Resources"
+
+# vSphere Datastore (full path) for VM Placement
+datastore = "/Demo-Datacenter/datastore/NFS_NLSAS_5"
+
+# vSphere Port Group (full path) for node network
+network = "/Demo-Datacenter/network/tkg-workload-network"
+
+# vSphere Folder (full path) for VM placement
+folder = "/Demo-Datacenter/vm/vrabbi/TKG"
+
+# vSphere Clone method - fullClone or linkedClone
+cloneMode = "fullClone"
+
+# vSphere Storage Policy ID for nodes and default vSphere CSI Storage Class
+storagePolicyID = ""
+
+
+
+### VSPHERE TEMPLATE SETTINGS
+
+# vSphere Template (full path) to use for the clusters nodes
+template = "/Demo-Datacenter/vm/Templates/TKG/Photon/photon-3-kube-v1.24.9+vmware.1"
+
+# OS to use for the nodes. can be photon or ubuntu
+os_name = "photon"
+
+# OS version of the nodes, 3 for photon or 2004 for ubuntu
+os_version = 3
+
+
+
+### TKG SETTINGS
+
+# Cluster Class to use for provisioning the cluster
+cluster_class_name = "tkg-vsphere-default-v1.0.0"
+
+# The kubectl context of your TKG management cluster
+mgmt_cluster_kube_context = ""
+
+# Namespace in the MGMT cluster for creating the CAPI objects
+mgmt_cluster_namespace = "default"
+
+# The file path to your local kubeconfig where you have contexts for your management cluster and workload clusters
+kubeconfig_path = "~/.kube/config"
+
+
+
+### K8S CLUSTER SETTINGS
+
+# The name of the TKG cluster you want to create
+cluster_name = ""
+
+# Kubernetes version of the cluster to deploy
+k8s_version = "v1.24.9+vmware.1"
+
+# CNI to install. can be antrea or calico
+cni = "antrea"
+
+# Enable K8s Audit Logging
+auditLogging = true
+
+
+
+### GENERAL NODE SETTINGS
+
+# Nameserver to configure on K8s nodes
+nameserver = "10.100.100.100"
+
+# DNS Search domain for K8s Nodes
+searchDomain = "vrabbi.cloud"
+
+# SSH public key to configure for the capv user on the nodes
+ssh_public_key = ""
+
+
+
+### WORKER NODE SETTINGS
+
+# Worker Nodes disk size in GB
+workerDiskGB = 50
+
+# Worker Nodes RAM in MB
+workerMemoryMB = 8192
+
+# Worker Nodes CPU count
+workerNumCPUs = 4
+
+# Number of worker nodes to create
+worker_node_count = 1
+
+
+
+### CONTROL PLANE NODE SETTINGS
+
+# Control Plane Nodes disk size in GB
+controlPlaneDiskGB = 50
+
+# Control Plane Nodes RAM in MB
+controlPlaneMemoryMB = 8192
+
+# Control Plane Nodes CPU count
+controlPlaneNumCPUs = 4
+
+# Number of control plane nodes. for prod set to 3
+cp_node_count = 1

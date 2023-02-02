@@ -1,6 +1,9 @@
 provider "aws" {
   region  = var.aws_region
   profile = var.aws_profile
+  ignore_tags {
+    keys = ["Created By", "Creation Date", "IAM Role Name", "IAM User Name"]
+  }
 }
 
 terraform {
@@ -25,6 +28,11 @@ terraform {
     tls = {
       version = "4.0.4"
     }
+
+    kubectl = {
+      source  = "alekc/kubectl"
+      version = ">= 2.0.0"
+    }
   }
 }
 
@@ -35,7 +43,16 @@ provider "kubernetes" {
 }
 
 provider "kubernetes" {
-  alias          = "workload"
-  config_path    = var.kubeconfig_path
-  config_context = var.cluster_created ? "${var.cluster_name}-admin@${var.cluster_name}" : var.mgmt_cluster_kube_context
+  alias                  = "workload"
+  host                   = local.url
+  client_certificate     = local.cert
+  client_key             = local.key
+  cluster_ca_certificate = local.ca
+}
+
+provider "kubectl" {
+  apply_retry_count = 15
+  alias             = "mgmt"
+  config_path       = var.kubeconfig_path
+  config_context    = var.mgmt_cluster_kube_context
 }
