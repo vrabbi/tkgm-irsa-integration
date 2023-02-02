@@ -87,27 +87,75 @@ The following resources are used by this module:
 
 The following input variables are required:
 
-### <a name="input_aws_profile"></a> [aws\_profile](#input\_aws\_profile)
-
-Description: The AWS profile to use for authentication to AWS
-
-Type: `any`
-
 ### <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name)
 
 Description: The name of the TKG cluster you want to create
 
-Type: `any`
+Type: `string`
+
+### <a name="input_datacenter"></a> [datacenter](#input\_datacenter)
+
+Description: vSphere Datacenter (full path) for VM placement
+
+Type: `string`
+
+### <a name="input_datastore"></a> [datastore](#input\_datastore)
+
+Description: vSphere Datastore (full path) for VM Placement
+
+Type: `string`
+
+### <a name="input_folder"></a> [folder](#input\_folder)
+
+Description: vSphere Folder (full path) for VM placement
+
+Type: `string`
 
 ### <a name="input_mgmt_cluster_kube_context"></a> [mgmt\_cluster\_kube\_context](#input\_mgmt\_cluster\_kube\_context)
 
 Description: The kubectl context of your TKG management cluster
 
-Type: `any`
+Type: `string`
+
+### <a name="input_nameserver"></a> [nameserver](#input\_nameserver)
+
+Description: Nameserver to configure on K8s nodes
+
+Type: `string`
+
+### <a name="input_network"></a> [network](#input\_network)
+
+Description: vSphere Port Group (full path) for node network
+
+Type: `string`
+
+### <a name="input_resourcePool"></a> [resourcePool](#input\_resourcePool)
+
+Description: vSphere Resource Pool (full path) for machine placement
+
+Type: `string`
+
+### <a name="input_searchDomain"></a> [searchDomain](#input\_searchDomain)
+
+Description: DNS Search domain for K8s Nodes
+
+Type: `string`
+
+### <a name="input_server"></a> [server](#input\_server)
+
+Description: vCenter FQDN or IP
+
+Type: `string`
 
 ### <a name="input_ssh_public_key"></a> [ssh\_public\_key](#input\_ssh\_public\_key)
 
 Description: SSH public key to configure for the capv user on the nodes
+
+Type: `string`
+
+### <a name="input_template"></a> [template](#input\_template)
+
+Description: vSphere Template (full path) to use for the clusters nodes
 
 Type: `string`
 
@@ -134,6 +182,14 @@ Description: Enable K8s Audit Logging
 Type: `bool`
 
 Default: `true`
+
+### <a name="input_aws_profile"></a> [aws\_profile](#input\_aws\_profile)
+
+Description: The AWS profile to use for authentication to AWS
+
+Type: `string`
+
+Default: `"default"`
 
 ### <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region)
 
@@ -199,30 +255,6 @@ Type: `number`
 
 Default: `1`
 
-### <a name="input_datacenter"></a> [datacenter](#input\_datacenter)
-
-Description: vSphere Datacenter (full path) for VM placement
-
-Type: `string`
-
-Default: `"/Demo-Datacenter"`
-
-### <a name="input_datastore"></a> [datastore](#input\_datastore)
-
-Description: vSphere Datastore (full path) for VM Placement
-
-Type: `string`
-
-Default: `"/Demo-Datacenter/datastore/NFS_NLSAS_5"`
-
-### <a name="input_folder"></a> [folder](#input\_folder)
-
-Description: vSphere Folder (full path) for VM placement
-
-Type: `string`
-
-Default: `"/Demo-Datacenter/vm/LABS/Scott"`
-
 ### <a name="input_iam_role_configs"></a> [iam\_role\_configs](#input\_iam\_role\_configs)
 
 Description: IAM Role configuration for IRSA Service Accounts
@@ -273,22 +305,6 @@ Type: `string`
 
 Default: `"default"`
 
-### <a name="input_nameserver"></a> [nameserver](#input\_nameserver)
-
-Description: Nameserver to configure on K8s nodes
-
-Type: `string`
-
-Default: `"10.100.100.100"`
-
-### <a name="input_network"></a> [network](#input\_network)
-
-Description: vSphere Port Group (full path) for node network
-
-Type: `string`
-
-Default: `"/Demo-Datacenter/network/tkg-static-ips"`
-
 ### <a name="input_os_name"></a> [os\_name](#input\_os\_name)
 
 Description: OS to use for the nodes. can be photon or ubuntu
@@ -305,30 +321,6 @@ Type: `number`
 
 Default: `3`
 
-### <a name="input_resourcePool"></a> [resourcePool](#input\_resourcePool)
-
-Description: vSphere Resource Pool (full path) for machine placement
-
-Type: `string`
-
-Default: `"/Demo-Datacenter/host/Demo-Cluster/Resources"`
-
-### <a name="input_searchDomain"></a> [searchDomain](#input\_searchDomain)
-
-Description: DNS Search domain for K8s Nodes
-
-Type: `string`
-
-Default: `"terasky.demo"`
-
-### <a name="input_server"></a> [server](#input\_server)
-
-Description: vCenter FQDN or IP
-
-Type: `string`
-
-Default: `"demo-vc-01.terasky.demo"`
-
 ### <a name="input_storagePolicyID"></a> [storagePolicyID](#input\_storagePolicyID)
 
 Description: vSphere Storage Policy ID for nodes and default vSphere CSI Storage Class
@@ -336,14 +328,6 @@ Description: vSphere Storage Policy ID for nodes and default vSphere CSI Storage
 Type: `string`
 
 Default: `""`
-
-### <a name="input_template"></a> [template](#input\_template)
-
-Description: vSphere Template (full path) to use for the clusters nodes
-
-Type: `string`
-
-Default: `"/Demo-Datacenter/vm/Templates/TKG-M/Photon/photon-3-kube-v1.24.9+vmware.1"`
 
 ### <a name="input_tlsThumbprint"></a> [tlsThumbprint](#input\_tlsThumbprint)
 
